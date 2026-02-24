@@ -1,11 +1,15 @@
 template <typename T>
-Array<T>::Array():_data(NULL),_size(0)
-{}
+Array<T>::Array():_size(0)
+{
+    _data = new T();
+}
 
 template <typename T>
 Array<T>::Array(Array<T> const &other)
 {
-    for (int i = 0; i < _size;i++)
+    _size = other._size;
+    _data = new T[_size];
+    for (size_t i = 0; i < _size;i++)
     {
         _data[i] = other._data[i];
     }
@@ -14,21 +18,25 @@ Array<T>::Array(Array<T> const &other)
 template <typename T>
 Array<T>::~Array()
 {
-    if (_data)
-        delete [] _data;
+    delete [] _data;
 }
 
 template <typename T>
-T &Array<T>::operator=(Array<T> const &other)
+Array<T> &Array<T>::operator=(Array<T> const &other)
 {
     if (this != &other)
     {
-        for (int i = 0; i < _size;i++)
+        delete [] _data;
+        
+        _size = other._size;
+        _data = new T[_size];
+        
+        for (size_t i = 0; i < _size;i++)
         {
             _data[i] = other._data[i];
         }
     }
-    return (this);
+    return (*this);
 }
 
 //////////////////////////////////////////////////////////////
@@ -39,23 +47,23 @@ Array<T>::Array(unsigned int size):_size(size)
 }
 
 template <typename T>
-T &Array<T>::operator[](int index)
+T &Array<T>::operator[](size_t index)
 {
-    if (index < 0 || index >= _size)
-        throw std::out_of_range("index out of bound");
+    if (index >= _size)
+        throw std::out_of_range("index out of bounds");
     return (_data[index]);
 }
 
 template <typename T>
-T &Array<T>::operator[](int index) const
+const T &Array<T>::operator[](size_t index) const
 {
-     if (index < 0 || index >= _size)
-        throw std::out_of_range("index out of bound");
+     if (index >= _size)
+        throw std::out_of_range("index out of bounds");
     return (_data[index]);
 }
 
 template <typename T>
-int Array<T>::size() const
+size_t Array<T>::size() const
 {
     return (_size);
 }
@@ -63,7 +71,7 @@ int Array<T>::size() const
 template <typename T>
 std::ostream &operator<<(std::ostream &os,Array<T> const data)
 {
-    for (int i = 0; i < data.size();i++)
-        os << data[i] <<std::endl;
+    for (size_t i = 0; i < data.size();i++)
+        os <<"  "<<data[i] <<std::endl;
     return (os);
  }

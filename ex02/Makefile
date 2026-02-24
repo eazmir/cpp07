@@ -7,7 +7,7 @@ DIR_MAIN = main
 DIR_SRC  = src
 
 FILES = \
-	$(DIR_MAIN)/main.cpp\
+	$(DIR_MAIN)/main.cpp
 
 OBJS = $(FILES:.cpp=.o)
 
