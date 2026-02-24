@@ -1,13 +1,13 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = ex01
+NAME = Array
 
 DIR_MAIN = main
 DIR_SRC  = src
 
 FILES = \
-	$(DIR_MAIN)/main.cpp \
+	$(DIR_MAIN)/main.cpp\
 
 OBJS = $(FILES:.cpp=.o)
 
