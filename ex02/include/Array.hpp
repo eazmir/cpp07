@@ -9,16 +9,16 @@ class Array
 {
     private:
         T *_data;
-        size_t _size;
+        unsigned int _size;
     public:
         Array();
         ~Array(); 
         Array(Array const &other);
         Array<T> &operator=(Array const &other);
         ////////////////////////////////
-        size_t size()const;
+        unsigned int size()const;
         Array(unsigned int size);
-        T &operator[](size_t index);
-        const T &operator[](size_t index)const;
+        T &operator[](unsigned int index);
+        const T &operator[](unsigned int index)const;
 };
 #include "../template/Array.tpp"

@@ -12,7 +12,7 @@ int main()
     print_section("Fill and Test Deep Copy");
 
     Array<int> numbers(MAX_VAL);
-    Array<int> mirror(MAX_VAL);
+    int *mirror = new int[MAX_VAL];
 
     for (size_t i = 0; i < MAX_VAL; ++i)
     {
@@ -85,10 +85,11 @@ int main()
         Array<int> arr(size);
 
         for (size_t i = 0; i < size; ++i)
-            arr[i] = std::rand();
+            arr[i] = i;
 
         std::cout << "{\n" << arr << "}\n";
     }
+    delete [] mirror;
     print_section("All Tests Completed Successfully");
     return 0;
 }

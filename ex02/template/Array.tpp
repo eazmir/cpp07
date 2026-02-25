@@ -1,8 +1,6 @@
 template <typename T>
-Array<T>::Array():_size(0)
-{
-    _data = new T();
-}
+Array<T>::Array():_data(NULL),_size(0)
+{}
 
 template <typename T>
 Array<T>::Array(Array<T> const &other)
@@ -31,7 +29,7 @@ Array<T> &Array<T>::operator=(Array<T> const &other)
         _size = other._size;
         _data = new T[_size];
         
-        for (size_t i = 0; i < _size;i++)
+        for (unsigned int i = 0; i < _size;i++)
         {
             _data[i] = other._data[i];
         }
@@ -47,7 +45,7 @@ Array<T>::Array(unsigned int size):_size(size)
 }
 
 template <typename T>
-T &Array<T>::operator[](size_t index)
+T &Array<T>::operator[](unsigned int index)
 {
     if (index >= _size)
         throw std::out_of_range("index out of bounds");
@@ -55,7 +53,7 @@ T &Array<T>::operator[](size_t index)
 }
 
 template <typename T>
-const T &Array<T>::operator[](size_t index) const
+const T &Array<T>::operator[](unsigned int index) const
 {
      if (index >= _size)
         throw std::out_of_range("index out of bounds");
@@ -63,7 +61,7 @@ const T &Array<T>::operator[](size_t index) const
 }
 
 template <typename T>
-size_t Array<T>::size() const
+unsigned int Array<T>::size() const
 {
     return (_size);
 }
@@ -71,7 +69,7 @@ size_t Array<T>::size() const
 template <typename T>
 std::ostream &operator<<(std::ostream &os,Array<T> const data)
 {
-    for (size_t i = 0; i < data.size();i++)
+    for (unsigned int i = 0; i < data.size();i++)
         os <<"  "<<data[i] <<std::endl;
     return (os);
  }
